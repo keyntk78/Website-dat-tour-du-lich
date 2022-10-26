@@ -1,6 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +20,28 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+
+
+// Route::get('/admin', [HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+ Route::get('logout', [HomeController::class, 'getDangXuat'])->name('logout');
+
+Route::prefix('admin')->middleware('adminLogin')->group(function(){
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    
+   
+
+    Route::prefix('user')->group(function(){
+        Route::get('/', [UserController::class, 'index'])->name('users.index');
+        Route::get('create', [UserController::class, 'create'])->name('users.create');
+
+        Route::get('edit/{id}', [UserController::class, 'edit'])->name('users.edit');
+        Route::post('edit/{id}', [UserController::class, 'postEdit']);
+
+        Route::get('delete/{id}', [UserController::class, 'delete'])->name('users.delete');
+
+    });
 });
