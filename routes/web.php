@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TinhController;
+
 
 
 /*
@@ -23,7 +25,6 @@ Route::get('/', function () {
 });
 
 
-
 // Route::get('/admin', [HomeController::class, 'index'])->name('home');
 
 Auth::routes();
@@ -33,7 +34,7 @@ Route::prefix('admin')->middleware('adminLogin')->group(function(){
     Route::get('/', [HomeController::class, 'index'])->name('home');
     
    
-
+    // user
     Route::prefix('user')->group(function(){
         Route::get('/', [UserController::class, 'index'])->name('users.index');
         Route::get('create', [UserController::class, 'create'])->name('users.create');
@@ -44,4 +45,15 @@ Route::prefix('admin')->middleware('adminLogin')->group(function(){
         Route::get('delete/{id}', [UserController::class, 'delete'])->name('users.delete');
 
     });
+
+    // tỉnh
+    Route::prefix('tinh')->name('tinh.')->group(function(){
+       Route::get('/', [TinhController::class, 'index'])->name('index');
+       Route::get('/add', [TinhController::class, 'addTinh'])->name('add');
+       Route::post('/add', [TinhController::class, 'postaddTinh']);
+       Route::get('/edit/{id}', [TinhController::class, 'getEditTinh'])->name('edit');
+       Route::post('/update', [TinhController::class, 'postEditTinh'])->name('post-edit');
+       Route::get('/delete/{id}', [TinhController::class, 'deleteTinh'])->name('delete');
+    });
+    
 });

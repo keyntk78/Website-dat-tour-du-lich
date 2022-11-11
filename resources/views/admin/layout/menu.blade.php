@@ -15,7 +15,7 @@
                         </li>
                         
                         <li>
-                            <a href="admin/theloai/danhsach"><img width="20px" height="20px" src="upload/tintuc/theloai.jpg"> Loại tour<span class="fa arrow"></span></a>
+                            <a href="admin/theloai/danhsach"><i class="fa fa-book fa-fw"></i> Loại tour<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="admin/theloai/danhsach">Danh sách</a>
@@ -27,7 +27,7 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="admin/loaitin/danhsach"><img width="20px" height="20px" src="upload/tintuc/loaitin.jpg"> Tour<span class="fa arrow"></span></a>
+                            <a href="admin/loaitin/danhsach"><i class="fa fa-plane fa-fw"></i> Tour<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="admin/loaitin/danhsach">Danh sách</a>
@@ -39,7 +39,7 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="admin/tintuc/danhsach"><img width="20px" height="20px" src="upload/tintuc/tintuc5.jpg"> Địa Điểm<span class="fa arrow"></span></a>
+                            <a href="admin/tintuc/danhsach"><i class="fa fa-map-marker fa-fw"></i> Địa Điểm<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="admin/tintuc/danhsach">Danh sách</a>
@@ -52,13 +52,13 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="admin/slide/danhsach"><img width="20px" height="20px" src="upload/tintuc/slide.jpg"> Tỉnh<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-globe fa-fw"></i> Tỉnh<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="admin/slide/danhsach">Danh sách</a>
+                                    <a href="{{ route('tinh.index') }}">Danh sách</a>
                                 </li>
                                 <li>
-                                    <a href="admin/slide/them">Thêm</a>
+                                    <a href="{{ route('tinh.add') }}">Thêm</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -70,7 +70,7 @@
                                     <a href="{{ route('users.index') }}">Danh sách</a>
                                 </li>
                                 <li>
-                                    <a href="admin/register">Thêm</a>
+                                    <a href="#">Thêm</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
