@@ -10,6 +10,12 @@
     <base href="{{asset('')}}">
     <!-- Bootstrap Core CSS -->
     <link href="admin_asset/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    {{-- <link href="admin_asset\bootstrap-5.0.2-dist\css\bootstrap.min.css" rel="stylesheet"> --}}
+
+    {{-- ckeditor --}}
+    <script src="admin_asset/ckeditor/ckeditor.js"></script>
+    <script src="admin_asset\ckfinder\ckfinder.js"></script>
+
 
     <!-- MetisMenu CSS -->
     <link href="admin_asset/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
@@ -26,6 +32,8 @@
     <!-- DataTables Responsive CSS -->
     <link href="admin_asset/bower_components/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet">
 
+    {{-- css custom --}}
+    <link href="\admin_asset\css\style.css" rel="stylesheet">
 </head>
 
 <body>

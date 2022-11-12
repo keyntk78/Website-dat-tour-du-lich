@@ -22,6 +22,7 @@ class Tinh extends Model
 
     public function addTinh($data)
     {
+        // thêm dữ liệu
       return  DB::insert('INSERT INTO tinh (tentinh, created_at, updated_at) VALUES (?,?,?)', $data);
     }
 
@@ -37,5 +38,15 @@ class Tinh extends Model
     public function DeleteTinh($id) {
 
         return  DB::delete('DELETE FROM '.$this->table.' WHERE id_tinh = ?', [$id]);
+    }
+
+    // lấy danh sách tỉnh sắp xếp theo họ tên
+    public function getAll()
+    {
+       $tinhs = DB::table($this->table)
+       ->orderBy('tentinh', 'ASC')
+       ->get();
+
+       return $tinhs;
     }
 }

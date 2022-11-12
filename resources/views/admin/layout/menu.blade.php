@@ -15,37 +15,37 @@
                         </li>
                         
                         <li>
-                            <a href="admin/theloai/danhsach"><i class="fa fa-book fa-fw"></i> Loại tour<span class="fa arrow"></span></a>
+                            <a href=""><i class="fa fa-book fa-fw"></i> Loại tour<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="admin/theloai/danhsach">Danh sách</a>
+                                    <a href="{{ route('loaitour.index') }}">Danh sách</a>
                                 </li>
                                 <li>
-                                    <a href="admin/theloai/them">Thêm</a>
+                                    <a href="{{ route('loaitour.add') }}">Thêm</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="admin/loaitin/danhsach"><i class="fa fa-plane fa-fw"></i> Tour<span class="fa arrow"></span></a>
+                            <a href=""><i class="fa fa-plane fa-fw"></i> Tour<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="admin/loaitin/danhsach">Danh sách</a>
+                                    <a href="{{ route('tour.index') }}">Danh sách</a>
                                 </li>
                                 <li>
-                                    <a href="admin/loaitin/them">Thêm</a>
+                                    <a href="{{ route('tour.add') }}">Thêm</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="admin/tintuc/danhsach"><i class="fa fa-map-marker fa-fw"></i> Địa Điểm<span class="fa arrow"></span></a>
+                            <a href=""><i class="fa fa-map-marker fa-fw"></i> Địa Điểm<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="admin/tintuc/danhsach">Danh sách</a>
+                                    <a href="{{ route('diadiem.index') }}">Danh sách</a>
                                 </li>
                                 <li>
-                                    <a href="admin/tintuc/them">Thêm</a>
+                                    <a href="{{ route('diadiem.add') }}">Thêm</a>
                                 </li>
                                 
                             </ul>

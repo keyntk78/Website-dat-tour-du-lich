@@ -6,6 +6,12 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TinhController;
+use App\Http\Controllers\LoaiTourController;
+use App\Http\Controllers\DiaDiemController;
+use App\Http\Controllers\TourController;
+
+
+
 
 
 
@@ -54,6 +60,36 @@ Route::prefix('admin')->middleware('adminLogin')->group(function(){
        Route::get('/edit/{id}', [TinhController::class, 'getEditTinh'])->name('edit');
        Route::post('/update', [TinhController::class, 'postEditTinh'])->name('post-edit');
        Route::get('/delete/{id}', [TinhController::class, 'deleteTinh'])->name('delete');
+    });
+
+    // loai tour
+     Route::prefix('loaitour')->name('loaitour.')->group(function(){
+       Route::get('/', [LoaiTourController::class, 'index'])->name('index');
+       Route::get('/add', [LoaiTourController::class, 'addLoaiTour'])->name('add');
+       Route::post('/add', [LoaiTourController::class, 'postaddLoaiTour']);
+    //    Route::get('/edit/{id}', [TinhController::class, 'getEditTinh'])->name('edit');
+    //    Route::post('/update', [TinhController::class, 'postEditTinh'])->name('post-edit');
+    //    Route::get('/delete/{id}', [TinhController::class, 'deleteTinh'])->name('delete');
+    });
+
+    // Địa điểm
+     Route::prefix('diadiem')->name('diadiem.')->group(function(){
+       Route::get('/', [DiaDiemController::class, 'index'])->name('index');
+       Route::get('/add', [DiaDiemController::class, 'addDiaDiem'])->name('add');
+       Route::post('/add', [DiaDiemController::class, 'postaddDiaDiem']);
+    //    Route::get('/edit/{id}', [TinhController::class, 'getEditTinh'])->name('edit');
+    //    Route::post('/update', [TinhController::class, 'postEditTinh'])->name('post-edit');
+    //    Route::get('/delete/{id}', [TinhController::class, 'deleteTinh'])->name('delete');
+    });
+
+    // Tour
+     Route::prefix('tour')->name('tour.')->group(function(){
+       Route::get('/', [TourController::class, 'index'])->name('index');
+       Route::get('/add', [TourController::class, 'addTour'])->name('add');
+       Route::post('/add', [TourController::class, 'postaddTour']);
+    //    Route::get('/edit/{id}', [TinhController::class, 'getEditTinh'])->name('edit');
+    //    Route::post('/update', [TinhController::class, 'postEditTinh'])->name('post-edit');
+    //    Route::get('/delete/{id}', [TinhController::class, 'deleteTinh'])->name('delete');
     });
     
 });
