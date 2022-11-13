@@ -45,4 +45,23 @@ class Tour extends Model
     {
        return DB::table($this->table)->insert($data);
     }
+
+    public function getDetail($id) {
+        
+       return DB::table($this->table)->select('*')->where('id', '=', $id)->get();
+        // return DB::select('SELECT * FROM '.$this->table.' WHERE id_tinh = ?', [$id]);
+    }
+
+    public function updateTour($data, $id) {
+        return DB::table($this->table)->where('id', $id)->update($data);
+        // return DB::update('UPDATE  '.$this->table.' SET tentinh = ?, updated_at=? WHERE id_tinh = ?', $data);
+    }
+
+    
+    public function DeleteTour($id) {
+
+        return DB::table($this->table)->where('id', $id)->delete();
+        // return  DB::delete('DELETE FROM '.$this->table.' WHERE id_tinh = ?', [$id]);
+    }
+
 }

@@ -21,13 +21,13 @@
                                 Vui lòng kiểm tra lại dữ liệu
                           </div>
                 @endif
-                <form action="" method="POST">
+                <form action="{{ route('tour.post-edit') }}" method="POST">
                     @csrf
                     <div class="row">
-                        <div class="col-lg-4 form-group">
+                        <div class="col-lg-8 form-group">
                             <label>Tên tour</label>
                             <input class="form-control" name="ten_tour" placeholder="Nhập tên tour ..." 
-                                value="{{old('ten_tour')}}" />
+                                value="{{old('ten_tour') ?? $tourDetails->ten_tour}}" />
                                 @error('ten_tour')
                                     <span style="color: red">{{ $message }}</span>
                                 @enderror
@@ -40,7 +40,10 @@
                                 <option value="0">--Chọn tỉnh--</option>
                                 @if (!empty(getAllTinh()))
                                     @foreach (getAllTinh() as $item)
-                                        <option value="{{ $item->id_tinh }}" {{ old('id_tinh')  == $item->id_tinh ? 'selected' : false }}>{{ $item->tentinh }}</option>
+                                        <option 
+                                        value="{{ $item->id_tinh }}" 
+                                            {{ old('id_tinh')  == $item->id_tinh || $tourDetails->id_tinh == $item->id_tinh  ? 'selected' : false }}
+                                        >{{ $item->tentinh }}</option>
                                     @endforeach
                                 @endif
                             </select>
@@ -54,7 +57,10 @@
                                 <option value="0">--Chọn địa điểm--</option>
                                  @if (!empty(getAllDiaDiem()))
                                     @foreach (getAllDiaDiem() as $item)
-                                        <option value="{{ $item->id }}" {{ old('id_diadiem')  == $item->id ? 'selected' : false }}>{{ $item->diem_den }}</option>
+                                        <option 
+                                        value="{{ $item->id }}"
+                                         {{ old('id_diadiem')  == $item->id || $tourDetails->id_diadiem == $item->id  ? 'selected' : false }}
+                                         >{{ $item->diem_den }}</option>
                                     @endforeach
                                 @endif
                             </select>
@@ -68,7 +74,10 @@
                                 <option value="0">--Chọn loại tour--</option>
                                  @if (!empty(getAllLoaiTour()))
                                     @foreach (getAllLoaiTour() as $item)
-                                        <option value="{{ $item->id }}" {{ old('id_loaitour')  == $item->id ? 'selected' : false }}>{{ $item->ten_loai_tour }}</option>
+                                        <option 
+                                        value="{{ $item->id }}" 
+                                        {{ old('id_loaitour')  == $item->id || $tourDetails->id_loaitour == $item->id ? 'selected' : false }}
+                                        >{{ $item->ten_loai_tour }}</option>
                                     @endforeach
                                 @endif
                             </select>
@@ -81,7 +90,7 @@
                         <div class="col-lg-4 form-group">
                             <label>Phương tiện</label>
                             <input class="form-control" name="phuong_tien" placeholder="Nhập phương tiện ..." 
-                                value="{{old('phuong_tien')}}" />
+                                value="{{old('phuong_tien') ?? $tourDetails->phuong_tien}}" />
                                 @error('phuong_tien')
                                     <span style="color: red">{{ $message }}</span>
                                 @enderror
@@ -89,7 +98,7 @@
                          <div class="col-lg-4 form-group">
                             <label>Giá người lớn</label>
                             <input class="form-control" name="gia_nguoi_lon" placeholder="Nhập giá vnđ ..." 
-                                value="{{old('gia_nguoi_lon')}}" />
+                                value="{{old('gia_nguoi_lon')?? $tourDetails->gia_nguoi_lon}}" />
                                 @error('gia_nguoi_lon')
                                     <span style="color: red">{{ $message }}</span>
                                 @enderror
@@ -97,7 +106,7 @@
                          <div class="col-lg-4 form-group">
                             <label>Giái trẻ em</label>
                             <input class="form-control" name="gia_tre_em" placeholder="Nhập giá vnđ ..." 
-                                value="{{old('gia_tre_em')}}" />
+                                value="{{old('gia_tre_em') ?? $tourDetails->gia_tre_em }}" />
                                 @error('gia_tre_em')
                                     <span style="color: red">{{ $message }}</span>
                                 @enderror
@@ -107,7 +116,7 @@
                         <div class="col-lg-4 form-group">
                             <label>Số lượng tối đa</label>
                             <input class="form-control" name="so_luong_toi_da" placeholder="Nhập số lượng ..." 
-                                value="{{old('so_luong_toi_da')}}" />
+                                value="{{old('so_luong_toi_da') ?? $tourDetails->so_luong_toi_da}}" />
                                 @error('so_luong_toi_da')
                                     <span style="color: red">{{ $message }}</span>
                                 @enderror
@@ -115,7 +124,7 @@
                         <div class="col-lg-4 form-group">
                             <label>Số ngày</label>
                             <input class="form-control" name="so_ngay" placeholder="Nhập số ngày ..." 
-                                value="{{old('so_ngay')}}" />
+                                value="{{old('so_ngay') ?? $tourDetails->so_ngay}}" />
                                 @error('so_ngay')
                                     <span style="color: red">{{ $message }}</span>
                                 @enderror
@@ -123,7 +132,7 @@
                         <div class="col-lg-4 form-group">
                             <label>Số đêm</label>
                             <input class="form-control" name="so_dem" placeholder="Nhập số đêm ..." 
-                                value="{{old('so_dem')}}" />
+                                value="{{old('so_dem') ?? $tourDetails->so_dem}}" />
                                 @error('so_dem')
                                     <span style="color: red">{{ $message }}</span>
                                 @enderror
@@ -133,7 +142,7 @@
                         <div class="col-lg-12 form-group">
                             <label>Lịch trình</label>
                             <textarea name="lich_trinh" id="editor2" rows="10" cols="80">
-                                {{old('lich_trinh')}}
+                                {{old('lich_trinh') ?? $tourDetails->lich_trinh}}
                             </textarea>
                             @error('lich_trinh')
                                 <span style="color: red">{{ $message }}</span>
@@ -144,7 +153,7 @@
                         <div class="col-lg-12 form-group">
                             <label>Mô tả</label>
                             <textarea name="mo_ta_tour" id="editor1" rows="10" cols="80">
-                                {{old('mo_ta_tour')}}
+                                {{old('mo_ta_tour') ?? $tourDetails->mo_ta_tour}}
                             </textarea>
                             @error('mo_ta_tour')
                                 <span style="color: red">{{ $message }}</span>
@@ -154,7 +163,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-4 form-group">
-                             <button type="submit" class="btn btn-success">Thêm</button>
+                             <button type="submit" class="btn btn-success">Cập nhật</button>
                             <a  href="{{ route('tour.index') }}" class="btn btn-primary">Quay lại</a>
                         </div>
                         

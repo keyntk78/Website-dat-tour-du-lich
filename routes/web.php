@@ -87,9 +87,9 @@ Route::prefix('admin')->middleware('adminLogin')->group(function(){
        Route::get('/', [TourController::class, 'index'])->name('index');
        Route::get('/add', [TourController::class, 'addTour'])->name('add');
        Route::post('/add', [TourController::class, 'postaddTour']);
-    //    Route::get('/edit/{id}', [TinhController::class, 'getEditTinh'])->name('edit');
-    //    Route::post('/update', [TinhController::class, 'postEditTinh'])->name('post-edit');
-    //    Route::get('/delete/{id}', [TinhController::class, 'deleteTinh'])->name('delete');
+       Route::get('/edit/{id}', [TourController::class, 'getEditTour'])->name('edit');
+       Route::post('/update', [TourController::class, 'postEditTour'])->name('post-edit');
+       Route::get('/delete/{id}', [TourController::class, 'deleteTour'])->name('delete');
     });
     
 });
