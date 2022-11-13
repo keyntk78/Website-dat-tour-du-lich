@@ -24,7 +24,7 @@
                 <form action="" method="POST">
                     @csrf
                     <div class="row">
-                        <div class="col-lg-4 form-group">
+                        <div class="col-lg-8 form-group">
                             <label>Tên tour</label>
                             <input class="form-control" name="ten_tour" placeholder="Nhập tên tour ..." 
                                 value="{{old('ten_tour')}}" />
@@ -130,11 +130,9 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-12 form-group">
+                        <div class="col-lg-8 form-group">
                             <label>Lịch trình</label>
-                            <textarea name="lich_trinh" id="editor2" rows="10" cols="80">
-                                {{old('lich_trinh')}}
-                            </textarea>
+                            <textarea name="lich_trinh" class="form-control" rows="10">{{old('lich_trinh')}}</textarea>
                             @error('lich_trinh')
                                 <span style="color: red">{{ $message }}</span>
                             @enderror
@@ -165,10 +163,6 @@
                         // instance, using default configuration.
                         
                         CKEDITOR.replace( 'editor1', {
-                            filebrowserBrowseUrl: 'admin_asset/ckfinder/ckfinder.html',
-                            filebrowserUploadUrl: 'admin_asset/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
-                        } );
-                         CKEDITOR.replace( 'editor2', {
                             filebrowserBrowseUrl: 'admin_asset/ckfinder/ckfinder.html',
                             filebrowserUploadUrl: 'admin_asset/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
                         } );

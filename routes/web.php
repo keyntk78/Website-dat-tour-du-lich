@@ -9,26 +9,26 @@ use App\Http\Controllers\TinhController;
 use App\Http\Controllers\LoaiTourController;
 use App\Http\Controllers\DiaDiemController;
 use App\Http\Controllers\TourController;
+use App\Http\Controllers\ChiTietTourController;
+use App\Http\Controllers\PageController;
+
+
+
+// trang chủ
+Route::get('/', [PageController::class, 'index'])->name('trangchu');
+Route::get('/trangchu', [PageController::class, 'index'])->name('trangchu');
+
+
+// trang chi tiet
+Route::get('/chitiettour/{id}', [PageController::class, 'chitiettour'])->name('chitiettour');
+Route::get('/loaitour', [PageController::class, 'loaitour'])->name('loaitour');
+Route::get('/dangnhap', [PageController::class, 'dangnhap'])->name('dangnhap');
+Route::get('/dangky', [PageController::class, 'dangky'])->name('dangky');
 
 
 
 
 
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-Route::get('/', function () {
-    return view('welcome');
-});
 
 
 // Route::get('/admin', [HomeController::class, 'index'])->name('home');
@@ -90,6 +90,16 @@ Route::prefix('admin')->middleware('adminLogin')->group(function(){
        Route::get('/edit/{id}', [TourController::class, 'getEditTour'])->name('edit');
        Route::post('/update', [TourController::class, 'postEditTour'])->name('post-edit');
        Route::get('/delete/{id}', [TourController::class, 'deleteTour'])->name('delete');
+    });
+
+     // chi tiết tour
+     Route::prefix('chitiettour')->name('chitiettour.')->group(function(){
+       Route::get('/', [ChiTietTourController::class, 'index'])->name('index');
+       Route::get('/add', [ChiTietTourController::class, 'addChiTietTour'])->name('add');
+       Route::post('/add', [ChiTietTourController::class, 'postaddChiTietTour'])->name('post-add');
+      //  Route::get('/edit/{id}', [TourController::class, 'getEditTour'])->name('edit');
+      //  Route::post('/update', [TourController::class, 'postEditTour'])->name('post-edit');
+      //  Route::get('/delete/{id}', [TourController::class, 'deleteTour'])->name('delete');
     });
     
 });

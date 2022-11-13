@@ -15,7 +15,7 @@
                         </li>
                         
                         <li>
-                            <a href=""><i class="fa fa-book fa-fw"></i> Loại tour<span class="fa arrow"></span></a>
+                            <a href=""><i class="fa fa-calendar fa-fw"></i> Loại tour<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="{{ route('loaitour.index') }}">Danh sách</a>
@@ -26,6 +26,20 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+
+                         <li>
+                            <a href=""><i class="fa fa-book fa-fw"></i> Chi tiết tour<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{{ route('chitiettour.index') }}">Danh sách</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('chitiettour.add') }}">Thêm</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+
                         <li>
                             <a href=""><i class="fa fa-plane fa-fw"></i> Tour<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">

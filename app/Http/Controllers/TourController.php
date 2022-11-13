@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DiaDiem;
-use App\Models\Tinh;
 use App\Models\Tour;
 
 use Illuminate\Http\Request;
@@ -12,7 +10,7 @@ class TourController extends Controller
 {
     private $tour;
 
-    const _PER_PAGE = 3;
+    const _PER_PAGE = 5;
 
     public function __construct()
     {
@@ -46,9 +44,11 @@ class TourController extends Controller
             $keyword = $request->keywords;
         }
         $tours = $this->tour->getAllTour($filters, $keyword, self:: _PER_PAGE); 
+
         return view('admin.tour.index', compact('tours'));
     }
 
+    // get
     public function addTour()
     {
         return view('admin.tour.add');
@@ -104,7 +104,7 @@ class TourController extends Controller
 
         $this->tour->addTour($dataInsert);
 
-        return redirect()->route('tour.index')->with('thongbao','Thêm tour thành công');
+        return back()->with('thongbao','Thêm Tour thành công');
     }
 
 
@@ -159,8 +159,6 @@ class TourController extends Controller
                     'so_dem.numeric' => 'Giá người lớn phải là số',
                     'lich_trinh.required' => 'Lịch trình bắt buộc phải nhập',
                     'mo_ta_tour.required' => 'Mô tả bắt buộc phải nhập',
-
-
                 ]);
 
 

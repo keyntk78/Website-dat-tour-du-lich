@@ -64,4 +64,13 @@ class Tour extends Model
         // return  DB::delete('DELETE FROM '.$this->table.' WHERE id_tinh = ?', [$id]);
     }
 
+    // lấy tất cả tour theo thứ tự tên
+      public function getAll()
+    {
+       $tours = DB::table($this->table)
+       ->orderBy('ten_tour', 'ASC')
+       ->get();
+
+       return $tours;
+    }
 }
