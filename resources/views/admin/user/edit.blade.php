@@ -132,7 +132,7 @@
 
                     {{-- Submit --}}
                    <button type="submit" class="btn btn-success">Sửa</button>
-                    <button type="reset" class="btn btn-primary">Làm mới</button>
+                    <a href="{{ route('users.index') }}" class="btn btn-primary">Quay lại</a>
                 <form>
             </div>
         </div>

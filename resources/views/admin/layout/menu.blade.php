@@ -96,9 +96,6 @@
                                 <li>
                                     <a href="{{ route('users.index') }}">Danh sách</a>
                                 </li>
-                                <li>
-                                    <a href="#">Thêm</a>
-                                </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>

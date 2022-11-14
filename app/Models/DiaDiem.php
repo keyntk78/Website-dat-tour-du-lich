@@ -27,6 +27,23 @@ class DiaDiem extends Model
       return  DB::insert('INSERT INTO diadiem (diem_den, id_tinh, mo_ta, created_at, updated_at) VALUES (?,?,?,?,?)', $data);
     }
 
+    public function getDetail($id) {
+        
+       return DB::table($this->table)->select('*')->where('id', '=', $id)->get();
+        // return DB::select('SELECT * FROM '.$this->table.' WHERE id_tinh = ?', [$id]);
+    }
+
+    public function updateDiemDen($data, $id) {
+        return DB::table($this->table)->where('id', $id)->update($data);
+        // return DB::update('UPDATE  '.$this->table.' SET tentinh = ?, updated_at=? WHERE id_tinh = ?', $data);
+    }
+
+    public function DeleteDiaDiem($id) {
+
+        return DB::table($this->table)->where('id', $id)->delete();
+        // return  DB::delete('DELETE FROM '.$this->table.' WHERE id_tinh = ?', [$id]);
+    }
+
       // lấy danh sách  dia diem sắp xếp theo diem den
     public function getAll()
     {

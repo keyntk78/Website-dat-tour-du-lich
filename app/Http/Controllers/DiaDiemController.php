@@ -56,7 +56,74 @@ class DiaDiemController extends Controller
 
         $this->diaDiem->addDiaDiem($dataInsert);
         
-        return redirect()->route('diadiem.index')->with('thongbao','Thêm địa điểm thành công');
+        return back()->with('thongbao','Thêm địa điểm thành công');
 
+    }
+
+    public function getEditDiaDiem(Request $request, $id = 0)
+    {
+        if (!empty($id)){
+            $diadiemDetails = $this->diaDiem->getDetail($id);
+            if (!empty($diadiemDetails[0])) {
+                 $request->session()->put('id', $id);
+                 $diadiemDetails = $diadiemDetails[0];
+            } else {
+                return redirect()->route('diadiem.index')->with('thongbao', 'Địa điểm không tồn tại');
+            }
+        }else{
+            return redirect()->route('diadiem.index')->with('thongbao', 'Liên kết không tồn tại');
+        }
+       return view('admin.diadiem.edit', compact('diadiemDetails'));
+    }
+
+    public function postEditDiaDiem(Request $request)
+    {
+        $id = session('id');
+        if (empty($id)) {
+            return back()->with('thongbao','Liên kế không tồn tại');
+        }
+        
+        $request->validate([
+                    'diem_den' => 'required',
+                    'id_tinh' => 'not_in:0',
+                    'mo_ta' => 'required',
+                    
+                ],[
+                    'diem_den.required' => 'Điểm đến bắt buộc phải nhập',
+                    'id_tinh.not_in' => 'Phải chọn tỉnh',
+                    'mo_ta.required' => 'Mô tả bắt buộc phải nhập',
+                ]);
+
+
+        $dataUpdate = [
+            'diem_den' => $request->diem_den,
+            'id_tinh' => $request->id_tinh,
+            'mo_ta' => $request->mo_ta,      
+            'updated_at' =>date('Y-m-d H:i:s'),
+        ];
+
+       $this->diaDiem->updateDiemDen($dataUpdate,$id);
+
+       return back()->with('thongbao','Cập nhật địa điểm thành công');
+    }
+
+    public function deleteDiaDiem($id)
+    {
+          if (!empty($id)){
+            $diadiemDetails = $this->diaDiem->getDetail($id);
+            if (!empty($diadiemDetails[0])) {
+                $deleteStatus = $this->diaDiem->DeleteDiaDiem($id);
+                if ($deleteStatus) {
+                    $thongbao = 'Xóa địa điểm thành công';
+                } else {
+                    $thongbao = 'Xóa địa điểm không thành công. Vui lòng thử lại!';
+                }
+            } else {
+               $thongbao = 'Địa điểm không tồn tại';
+            }
+        }else{
+             $thongbao = 'Liên kết không tồn tại';
+        }
+        return redirect()->route('diadiem.index')->with('thongbao', $thongbao);
     }
 }

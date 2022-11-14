@@ -57,14 +57,13 @@ Route::prefix('admin')->middleware('adminLogin')->group(function(){
     
    
     // user
-    Route::prefix('user')->group(function(){
-        Route::get('/', [UserController::class, 'index'])->name('users.index');
-        Route::get('create', [UserController::class, 'create'])->name('users.create');
+    Route::prefix('user')->name('users.')->group(function(){
+        Route::get('/', [UserController::class, 'index'])->name('index');
 
-        Route::get('edit/{id}', [UserController::class, 'edit'])->name('users.edit');
+        Route::get('edit/{id}', [UserController::class, 'edit'])->name('edit');
         Route::post('edit/{id}', [UserController::class, 'postEdit']);
 
-        Route::get('delete/{id}', [UserController::class, 'delete'])->name('users.delete');
+        Route::get('delete/{id}', [UserController::class, 'delete'])->name('delete');
 
     });
 
@@ -83,9 +82,9 @@ Route::prefix('admin')->middleware('adminLogin')->group(function(){
        Route::get('/', [LoaiTourController::class, 'index'])->name('index');
        Route::get('/add', [LoaiTourController::class, 'addLoaiTour'])->name('add');
        Route::post('/add', [LoaiTourController::class, 'postaddLoaiTour']);
-    //    Route::get('/edit/{id}', [TinhController::class, 'getEditTinh'])->name('edit');
-    //    Route::post('/update', [TinhController::class, 'postEditTinh'])->name('post-edit');
-    //    Route::get('/delete/{id}', [TinhController::class, 'deleteTinh'])->name('delete');
+       Route::get('/edit/{id}', [LoaiTourController::class, 'getEditLoaiTour'])->name('edit');
+       Route::post('/update', [LoaiTourController::class, 'postEditLoaiTour'])->name('post-edit');
+       Route::get('/delete/{id}', [LoaiTourController::class, 'deleteLoaiTour'])->name('delete');
     });
 
     // Địa điểm
@@ -93,9 +92,9 @@ Route::prefix('admin')->middleware('adminLogin')->group(function(){
        Route::get('/', [DiaDiemController::class, 'index'])->name('index');
        Route::get('/add', [DiaDiemController::class, 'addDiaDiem'])->name('add');
        Route::post('/add', [DiaDiemController::class, 'postaddDiaDiem']);
-    //    Route::get('/edit/{id}', [TinhController::class, 'getEditTinh'])->name('edit');
-    //    Route::post('/update', [TinhController::class, 'postEditTinh'])->name('post-edit');
-    //    Route::get('/delete/{id}', [TinhController::class, 'deleteTinh'])->name('delete');
+       Route::get('/edit/{id}', [DiaDiemController::class, 'getEditDiaDiem'])->name('edit');
+       Route::post('/update', [DiaDiemController::class, 'postEditDiaDiem'])->name('post-edit');
+       Route::get('/delete/{id}', [DiaDiemController::class, 'deleteDiaDiem'])->name('delete');
     });
 
     // Tour

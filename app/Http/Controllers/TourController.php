@@ -190,9 +190,9 @@ class TourController extends Controller
             if (!empty($tourDetails[0])) {
                 $deleteStatus = $this->tour->DeleteTour($id);
                 if ($deleteStatus) {
-                    $thongbao = 'Xóa tỉnh thành công';
+                    $thongbao = 'Xóa tour thành công';
                 } else {
-                    $thongbao = 'Xóa tỉnh không thành công. Vui lòng thử lại!';
+                    $thongbao = 'Xóa tour không thành công. Vui lòng thử lại!';
                 }
             } else {
                $thongbao = 'Tỉnh không tồn tại';

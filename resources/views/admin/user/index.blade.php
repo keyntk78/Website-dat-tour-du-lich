@@ -41,7 +41,7 @@
                                 {{"User"}} 
                             @endif 
                         </td>
-                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/user/delete/{{$item->id}}">Xóa</a></td>
+                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a onclick="return confirm('Bạn có chắc chắn muốn xóa?')" href="admin/user/delete/{{$item->id}}">Xóa</a></td>
                         <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/user/edit/{{$item->id}}">Sửa</a></td>
                     </tr>
                     @endforeach

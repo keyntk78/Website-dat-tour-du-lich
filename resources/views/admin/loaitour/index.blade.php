@@ -32,9 +32,9 @@
                         <td>{{$item->ten_loai_tour}}</td>
                         <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a 
                             onclick="return confirm('Bạn có chắc chắn muốn xóa?')" 
-                            href="">Xóa</a></td>
+                            href="{{ route('loaitour.delete', ['id'=>$item->id]) }}">Xóa</a></td>
                         <td class="center"><i class="fa fa-pencil fa-fw"></i> <a 
-                            href="">Sửa</a></td>
+                            href="{{ route('loaitour.edit', ['id'=>$item->id]) }}">Sửa</a></td>
                     </tr>
                     @endforeach
                 </tbody>
