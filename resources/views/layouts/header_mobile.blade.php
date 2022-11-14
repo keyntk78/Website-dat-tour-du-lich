@@ -11,14 +11,21 @@
                                         <i class="pe-7s-users"></i>
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="settingButtonTwo">
-                                        <li><a class="dropdown-item" href="my-account.html">Đăng nhập</a></li>
-                                        <li><a class="dropdown-item" href="login-register.html">Đăng ký</a></li>
+                                        @if (Auth::check())
+                                                    <li><a class="dropdown-item" href="{{ route('nguoidung') }}">Thông tin</a></li>
+                                                    <li><a class="dropdown-item" href="{{ route('dangxuat') }}">Đăng xuất</a></li>
+                                                @else
+                                                    <li><a class="dropdown-item" href="{{ route('dangnhap') }}">Đăng Nhập</a></li>
+                                                    <li><a class="dropdown-item" href="{{ route('dangky') }}">Đăng Ký</a></li>
+                                                @endif
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="wishlist.html">
-                                        <i class="pe-7s-like"></i>
-                                    </a>
+                                    @if (Auth::check())
+                                        {{ Auth::user()->hoten}}
+                                    @else  
+                                        Tài Khoản
+                                    @endif
                                 </li>
                             </ul>
                         </div>
@@ -26,7 +33,7 @@
                             <nav class="offcanvas-navigation">
                                 <ul class="mobile-menu">
                                     <li class="menu-item-has-children">
-                                        <a href="#">
+                                        <a href="/">
                                             <span class="mm-text">Trang chủ 
                                         </span>
                                         </a>
@@ -43,7 +50,13 @@
                                         </span>
                                         </a>
                                         <ul class="sub-menu">
-                                            <li>
+                                            @foreach (getAllLoaiTour() as $item)
+                                                        <li>
+                                                            <a 
+                                                            href="{{ route('loaitour', ['id'=>$item->id]) }}">{{ $item->ten_loai_tour }}</a>
+                                                        </li>
+                                                    @endforeach
+                                            {{-- <li>
                                                 <a href="faq.html">
                                                     <span class="mm-text">Hàng đầu</span>
                                                 </a>
@@ -52,7 +65,7 @@
                                                 <a href="404.html">
                                                     <span class="mm-text">Nổi bật</span>
                                                 </a>
-                                            </li>
+                                            </li> --}}
                                         </ul>
                                     </li>
                                    

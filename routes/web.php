@@ -11,6 +11,8 @@ use App\Http\Controllers\DiaDiemController;
 use App\Http\Controllers\TourController;
 use App\Http\Controllers\ChiTietTourController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\ChuongTrinhTouControllerr;
+
 
 
 
@@ -21,10 +23,24 @@ Route::get('/trangchu', [PageController::class, 'index'])->name('trangchu');
 
 // trang chi tiet
 Route::get('/chitiettour/{id}', [PageController::class, 'chitiettour'])->name('chitiettour');
-Route::get('/loaitour', [PageController::class, 'loaitour'])->name('loaitour');
-Route::get('/dangnhap', [PageController::class, 'dangnhap'])->name('dangnhap');
-Route::get('/dangky', [PageController::class, 'dangky'])->name('dangky');
+Route::get('/loaitour/{id}', [PageController::class, 'loaitour'])->name('loaitour');
 
+
+Route::get('/dangnhap', [PageController::class, 'getDangnhap'])->name('dangnhap');
+Route::post('/dangnhap', [PageController::class, 'postDangnhap'])->name('post-dangnhap');
+
+Route::get('/dangxuat', [PageController::class, 'getDangxuat'])->name('dangxuat');
+
+
+
+Route::get('/dangky', [PageController::class, 'getDangky'])->name('dangky');
+Route::post('/dangky', [PageController::class, 'postDangky'])->name('post-dangky');
+Route::get('/nguoidung', [PageController::class, 'getNguoidung'])->name('nguoidung');
+Route::post('/nguoidung', [PageController::class, 'postNguoidung'])->name('postNguoidung');
+
+
+
+Route::get('/tim-kiem', [PageController::class, 'TimKiem'])->name('timkiem');
 
 
 
@@ -90,6 +106,16 @@ Route::prefix('admin')->middleware('adminLogin')->group(function(){
        Route::get('/edit/{id}', [TourController::class, 'getEditTour'])->name('edit');
        Route::post('/update', [TourController::class, 'postEditTour'])->name('post-edit');
        Route::get('/delete/{id}', [TourController::class, 'deleteTour'])->name('delete');
+    });
+
+     // Chương trình tour
+     Route::prefix('chuongtrinhtour')->name('chuongtrinhtour.')->group(function(){
+       Route::get('/', [ChuongTrinhTouControllerr::class, 'index'])->name('index');
+       Route::get('/add', [ChuongTrinhTouControllerr::class, 'addChuongTrinhTour'])->name('add');
+       Route::post('/add', [ChuongTrinhTouControllerr::class, 'postaddChuongTrinhTour'])->name('post-add');
+      //  Route::get('/edit/{id}', [TourController::class, 'getEditTour'])->name('edit');
+      //  Route::post('/update', [TourController::class, 'postEditTour'])->name('post-edit');
+      //  Route::get('/delete/{id}', [TourController::class, 'deleteTour'])->name('delete');
     });
 
      // chi tiết tour

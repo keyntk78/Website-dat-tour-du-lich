@@ -98,27 +98,6 @@ body {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-/* custom css */
-.name_logo {
-    color: #bac34e;
-    font-size: 200%;
-    font-weight: 600;
-}
-
-.row.flex-login {
-    justify-content: center;
-}
-
-h4.login-title {
-    text-align: center;
-}
-
-.breadcrumb-area.breadcrumb-height {
-    height: 200px;
-}
-
-/* end custom css */
-
 hr {
     margin: 1rem 0;
     color: inherit;

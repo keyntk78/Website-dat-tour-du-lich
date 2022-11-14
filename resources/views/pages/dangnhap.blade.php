@@ -2,103 +2,45 @@
 
 @section('content')
     <!-- Begin Main Content Area -->
-      <main class="main-content">
-        <div
-          class="breadcrumb-area breadcrumb-height"
-          data-bg-image="assets/images/breadcrumb/bg/1-1-1920x373.jpg"
-        >
-          <div class="container h-100">
-            <div class="row h-100">
-              <div class="col-lg-12">
-                <div class="breadcrumb-item">
-                  <h2 class="breadcrumb-heading">Product Related</h2>
-                  <ul>
-                    <li>
-                      <a href="index.html"
-                        >Home <i class="pe-7s-angle-right"></i
-                      ></a>
-                    </li>
-                    <li>Login | Register</li>
-                  </ul>
-                </div>
-              </div>
+    @if(session('thongbao'))
+            <div class="alert alert-success" style="text-align: center;">
+                {{session('thongbao')}}
             </div>
-          </div>
-        </div>
+    @endif
+      <main class="main-content">
         <div class="login-register-area section-space-y-axis-100">
           <div class="container">
             <div class="row flex-login">
               <div class="col-lg-6">
-                <form action="#">
+                <form action="{{ route('post-dangnhap') }}" method="POST">
                   <div class="login-form">
                     <h4 class="login-title">Đăng nhập</h4>
+                     @csrf
                     <div class="row">
                       <div class="col-lg-12">
                         <label>Email</label>
-                        <input type="email" placeholder="Email Address" />
+                        <input type="email" name="email" value="{{ old('email') }}" placeholder="Nhập email ..." />
+                         @error('email')
+                                    <span style="color: red">{{ $message }}</span>
+                          @enderror
                       </div>
                       <div class="col-lg-12">
                         <label>Mật khẩu</label>
-                        <input type="password" placeholder="Password" />
+                        <input type="password" name="password" value="{{ old('password') }}" placeholder="Nhập mật khẩu ..." />
+                         @error('password')
+                                    <span style="color: red">{{ $message }}</span>
+                          @enderror
                       </div>
-                      <div class="col-md-8">
-                        <div class="check-box">
-                          <input type="checkbox" id="remember_me" />
-                          <label for="remember_me">Remember me</label>
-                        </div>
-                      </div>
-                      <div class="col-md-4 pt-1 mt-md-0">
-                        <div class="forgotton-password_info">
-                          <a href="#"> Forgotten pasward?</a>
-                        </div>
-                      </div>
-                      <div class="col-lg-12 pt-5">
+                       <div class="col-lg-12 pt-5">
                         <button
+                          type="submit"
                           class="btn btn-custom-size lg-size btn-secondary btn-primary-hover rounded-0"
-                        >
-                          Login
-                        </button>
+                        >Đăng Nhập</button>
                       </div>
                     </div>
                   </div>
                 </form>
               </div>
-              {{-- <div class="col-lg-6 pt-10 pt-lg-0">
-                <form action="#">
-                  <div class="login-form">
-                    <h4 class="login-title">Register</h4>
-                    <div class="row">
-                      <div class="col-md-6 col-12">
-                        <label>First Name</label>
-                        <input type="text" placeholder="First Name" />
-                      </div>
-                      <div class="col-md-6 col-12">
-                        <label>Last Name</label>
-                        <input type="text" placeholder="Last Name" />
-                      </div>
-                      <div class="col-md-12">
-                        <label>Email Address*</label>
-                        <input type="email" placeholder="Email Address" />
-                      </div>
-                      <div class="col-md-6">
-                        <label>Password</label>
-                        <input type="password" placeholder="Password" />
-                      </div>
-                      <div class="col-md-6">
-                        <label>Confirm Password</label>
-                        <input type="password" placeholder="Confirm Password" />
-                      </div>
-                      <div class="col-12">
-                        <button
-                          class="btn btn-custom-size lg-size btn-secondary btn-primary-hover rounded-0"
-                        >
-                          Register
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </div> --}}
             </div>
           </div>
         </div>

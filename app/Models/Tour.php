@@ -73,4 +73,7 @@ class Tour extends Model
 
        return $tours;
     }
+
+
+    
 }

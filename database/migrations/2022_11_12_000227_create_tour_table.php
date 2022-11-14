@@ -19,14 +19,14 @@ class CreateTourTable extends Migration
             $table->unsignedBigInteger('id_tinh');
             $table->unsignedBigInteger('id_diadiem');
             $table->unsignedBigInteger('id_loaitour');
-            $table->string('phuong_tien');
-            $table->tinyInteger('so_luong_toi_da');
-            $table->tinyInteger('so_ngay');
-            $table->tinyInteger('so_dem');
-            $table->integer('gia_nguoi_lon');
-            $table->integer('gia_tre_em');
-            $table->text('mo_ta_tour');
-            $table->text('lich_trinh');
+            $table->string('phuong_tien')->nullable();
+            $table->tinyInteger('so_luong_toi_da')->nullable();
+            $table->tinyInteger('so_ngay')->nullable();
+            $table->tinyInteger('so_dem')->nullable();
+            $table->integer('gia_nguoi_lon')->nullable();
+            $table->integer('gia_tre_em')->nullable();
+            $table->text('mo_ta_tour')->nullable();
+            $table->text('lich_trinh')->nullable();
             $table->timestamps();
 
             $table->foreign('id_tinh')->references('id_tinh')->on('tinh')->onDelete('cascade');

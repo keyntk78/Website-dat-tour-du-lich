@@ -15,13 +15,26 @@
                         </li>
                         
                         <li>
-                            <a href=""><i class="fa fa-calendar fa-fw"></i> Loại tour<span class="fa arrow"></span></a>
+                            <a href=""><i class="fa fa-bookmark fa-fw"></i> Loại tour<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="{{ route('loaitour.index') }}">Danh sách</a>
                                 </li>
                                 <li>
                                     <a href="{{ route('loaitour.add') }}">Thêm</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+
+                          <li>
+                            <a href=""><i class="fa fa-calendar fa-fw"></i> Chương trình tour<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{{ route('chuongtrinhtour.index') }}">Danh sách</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('chuongtrinhtour.add') }}">Thêm</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

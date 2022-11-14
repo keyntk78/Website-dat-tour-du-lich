@@ -11,7 +11,7 @@
                                 <h2 class="breadcrumb-heading">{{ $chitiettour->tour }}</h2>
                                 <ul>
                                     <li>
-                                        <a href="index.html">Trang chủ<i class="pe-7s-angle-right"></i></a>
+                                        <a href="/">Trang chủ<i class="pe-7s-angle-right"></i></a>
                                     </li>
                                     <li>Chi tiết tour</li>
                                 </ul>
@@ -27,7 +27,7 @@
                             <div class="sidebar-area">
                                 <div class="widgets-area mb-9">
                                     <h2 class="widgets-title mb-5">Giá người lớn: {{ currency_format($chitiettour->gia_nguoi_lon) }}</h2>
-                                    <h4 class="widgets-title mb-5">Giá trẻ em: {{currency_format($chitiettour->gia_tre_em) }}</h4>
+                                    <h2 class="widgets-title mb-5">Giá trẻ em: {{currency_format($chitiettour->gia_tre_em) }}</h2>
                                     <div class="widgets-item">
                                         <ul class="widgets-category">
                                             <li>
@@ -64,13 +64,13 @@
                                                      <div class="swiper-slide">
                                                     <div class="product-list-item">
                                                         <div class="product-img img-zoom-effect">
-                                                            <a href="single-product.html">
+                                                            <a href="{{ route('chitiettour', ['id'=>$item->id]) }}">
                                                                 <img class="img-full" src="{{ asset(PathImages($item->hinh_anh)) }}" alt="ảnh">
                                                             </a>
                                                         </div>
                                                         <div class="product-content">
                                                             <h5 class="title mb-3">
-                                                                <a href="blog-detail-left-sidebar.html">{{ $item->tour }}</a>
+                                                                <a href="{{ route('chitiettour', ['id'=>$item->id]) }}">{{ $item->tour }}</a>
                                                             </h5>
                                                             <div class="blog-meta text-manatee pb-1">
                                                                 <ul>
@@ -100,7 +100,54 @@
                                             <li class="date"><i class="fa fa-calendar-o me-2"></i>Ngày đi {{ dinhDangNgayThang($chitiettour->ngay_di) }} - Ngày về  {{ dinhDangNgayThang($chitiettour->ngay_ve) }}</li>
                                         </ul>
                                     </div>
+                                    <div class="diem_den">
+                                        <p>Các điểm tham quan: {{ $chitiettour->lich_trinh }}</p>
+                                    </div>
                                     {!! $chitiettour->mo_ta_tour !!}
+                                    <div class="blog-comment pt-10">
+                                        <h4 class="heading mb-7">Lịch trình</h4>
+                                        @if (!empty($listChuongtrinhtour[0]))
+                                            @foreach ($listChuongtrinhtour as $item)
+                                                <div class="blog-comment-item mb-8">
+                                                    <div class="blog-comment-content">
+                                                        <div class="user-meta">
+                                                            <span><strong>Ngày {{ $item->ngay_thu }}</strong></span>
+                                                        </div>
+                                                        <span class="user-occupation text-primary">{{ $item->tieu_de }}</span>
+                                                        {!! $item->mo_ta !!}
+                                                        {{-- <p class="user-comment mb-0">Comment example here. Nulla risus lacus, vehicula id mi vitae, auctor accumsan nulla. Sed a dolor sit amrt paremi quam. Lorem In euismod urna ac massa adipiscing interdum.</p>
+                                                        <a class="btn btn-link hover-white d-inline-flex d-md-none mt-5" href="javascript:void(0)">
+                                                            <i class="fa fa-reply me-2"></i>
+                                                            Reply
+                                                        </a> --}}
+                                                    </div>
+                                             </div>
+                                            @endforeach
+                                        @endif
+
+                                    
+                                        {{-- <div class="blog-comment-item">
+                                            <div class="blog-comment-img">
+                                                <img src="assets/images/avatar/2.jpg" alt="Avatar">
+                                            </div>
+                                            <div class="blog-comment-content">
+                                                <div class="user-meta">
+                                                    <span><strong>Aidyn Cody -</strong> Jul 21,2021 at 15 hours ago</span>
+                                                    <a class="btn btn-link hover-white d-none d-md-flex" href="javascript:void(0)">
+                                                        <i class="fa fa-reply me-2"></i>
+                                                        Reply
+                                                    </a>
+                                                </div>
+                                                <span class="user-occupation text-primary">Web Developer</span>
+                                                <p class="user-comment mb-0">Comment example here. Nulla risus lacus, vehicula id mi vitae, auctor accumsan nulla. Sed a dolor sit amrt paremi quam. Lorem In euismod urna ac massa adipiscing interdum.</p>
+                                                <a class="btn btn-link hover-white d-inline-flex d-md-none mt-5" href="javascript:void(0)">
+                                                    <i class="fa fa-reply me-2"></i>
+                                                    Reply
+                                                </a>
+                                            </div>
+                                        </div> --}}
+                                    </div>
+                                   
                                     <div class="tag-wtih-social">
                                         <div class="tag">
                                             <span class="title text-primary">Lưu ý:</span>

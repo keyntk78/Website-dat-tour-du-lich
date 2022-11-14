@@ -9,8 +9,8 @@
                                     {{-- <img src="assets/images/logo/dark.png" alt="Header Logo"> --}}
                                 </a>
                                 <div class="header-search-area d-none d-lg-block">
-                                    <form action="#" class="header-searchbox">
-                                        <input class="input-field" type="text" placeholder="Tìm kiếm">
+                                    <form action="{{ route('timkiem') }}" method="GET" class="header-searchbox">
+                                        <input class="input-field" type="text" name="tim_kiem" placeholder="Tìm kiếm">
                                         <button class="btn btn-outline-whisper btn-primary-hover" type="submit"><i class="pe-7s-search"></i></button>
                                     </form>
                                 </div>
@@ -21,25 +21,15 @@
                                                 <i class="pe-7s-users"></i>
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="settingButton">
-                                                <li><a class="dropdown-item" href="my-account.html">Đăng Nhập</a></li>
-                                                <li><a class="dropdown-item" href="login-register.html">Đăng Ký</a></li>
+                                                @if (Auth::check())
+                                                    <li><a class="dropdown-item" href="">{{ Auth::user()->hoten}}</a></li>
+                                                    <li><a class="dropdown-item" href="{{ route('nguoidung') }}">Thông tin</a></li>
+                                                    <li><a class="dropdown-item" href="{{ route('dangxuat') }}">Đăng xuất</a></li>
+                                                @else
+                                                    <li><a class="dropdown-item" href="{{ route('dangnhap') }}">Đăng Nhập</a></li>
+                                                    <li><a class="dropdown-item" href="{{ route('dangky') }}">Đăng Ký</a></li>
+                                                @endif
                                             </ul>
-                                        </li>
-                                        <li class="d-none d-md-block">
-                                            <a href="wishlist.html">
-                                                <i class="pe-7s-like"></i>
-                                            </a>
-                                        </li>
-                                        <li class="d-block d-lg-none">
-                                            <a href="#searchBar" class="search-btn toolbar-btn">
-                                                <i class="pe-7s-search"></i>
-                                            </a>
-                                        </li>
-                                        <li class="minicart-wrap me-3 me-lg-0">
-                                            <a href="#miniCart" class="minicart-btn toolbar-btn">
-                                                <i class="pe-7s-shopbag"></i>
-                                                <span class="quantity">3</span>
-                                            </a>
                                         </li>
                                         <li class="mobile-menu_wrap d-block d-lg-none">
                                             <a href="#mobileMenu" class="mobile-menu_btn toolbar-btn pl-0">
@@ -75,7 +65,8 @@
                                                 <ul class="drop-menu">
                                                     @foreach (getAllLoaiTour() as $item)
                                                         <li>
-                                                            <a href="{{ route('loaitour') }}">{{ $item->ten_loai_tour }}</a>
+                                                            <a 
+                                                            href="{{ route('loaitour', ['id'=>$item->id]) }}">{{ $item->ten_loai_tour }}</a>
                                                         </li>
                                                     @endforeach
                                                 </ul>
@@ -96,59 +87,4 @@
                 </div>
             </div>
            @include('layouts.header_mobile')
-            <div class="offcanvas-minicart_wrapper" id="miniCart">
-                <div class="harmic-offcanvas-body">
-                    <div class="minicart-content">
-                        <div class="minicart-heading">
-                            <h4 class="mb-0">Shopping Cart</h4>
-                            <a href="#" class="button-close"><i class="pe-7s-close"></i></a>
-                        </div>
-                        <ul class="minicart-list">
-                            <li class="minicart-product">
-                                <a class="product-item_remove" href="#"><i
-                                    class="pe-7s-close"></i></a>
-                                <a href="shop.html" class="product-item_img">
-                                    <img class="img-full" src="assets/images/product/small-size/1-1-112x124.jpg" alt="Product Image">
-                                </a>
-                                <div class="product-item_content">
-                                    <a class="product-item_title" href="shop.html">Black Pepper Grains</a>
-                                    <span class="product-item_quantity">1 x $80.00</span>
-                                </div>
-                            </li>
-                            <li class="minicart-product">
-                                <a class="product-item_remove" href="#"><i
-                                    class="pe-7s-close"></i></a>
-                                <a href="shop.html" class="product-item_img">
-                                    <img class="img-full" src="assets/images/product/small-size/1-2-112x124.jpg" alt="Product Image">
-                                </a>
-                                <div class="product-item_content">
-                                    <a class="product-item_title" href="shop.html">Peanut Big Bean</a>
-                                    <span class="product-item_quantity">1 x $80.00</span>
-                                </div>
-                            </li>
-                            <li class="minicart-product">
-                                <a class="product-item_remove" href="#">
-                                    <i class="pe-7s-close"></i>
-                                </a>
-                                <a href="shop.html" class="product-item_img">
-                                    <img class="img-full" src="assets/images/product/small-size/1-3-112x124.jpg" alt="Product Image">
-                                </a>
-                                <div class="product-item_content">
-                                    <a class="product-item_title" href="shop.html">Dried Lemon Green</a>
-                                    <span class="product-item_quantity">1 x $80.00</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="minicart-item_total">
-                        <span>Subtotal</span>
-                        <span class="ammount">$240.00</span>
-                    </div>
-                    <div class="group-btn_wrap d-grid gap-2">
-                        <a href="cart.html" class="btn btn-secondary btn-primary-hover">View Cart</a>
-                        <a href="checkout.html" class="btn btn-secondary btn-primary-hover">Checkout</a>
-                    </div>
-                </div>
-            </div>
-            <div class="global-overlay"></div>
         </header>

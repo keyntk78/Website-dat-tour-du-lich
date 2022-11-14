@@ -37,10 +37,14 @@
                             <div class="form-group ">
                                 <label>Tỉnh thành</label>
                                 <Select class="form-control form-select form-select-sm" name="id_tinh" style="width: 50%;">
+                                     <option value="">--chọn tỉnh--</option>
                                     @foreach ($tinh as $item)
                                         <option value="{{ $item->id_tinh }}">{{ $item->tentinh }}</option>
                                     @endforeach
                                 </Select>
+                                @error('id_tinh')
+                                    <span style="color: red">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <div class="form-group">

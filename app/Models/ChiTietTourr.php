@@ -45,7 +45,7 @@ class ChiTietTourr extends Model
     }
 
 
-    // lấy danh sách các chi tiết tour và tên tour // trang chủ
+    // lấy top 5 danh sách các chi tiết tour và tên tour mới nhất// trang chủ
     public function getCTTTrangChu()
     {
        $list = DB::table($this->table)
@@ -58,6 +58,20 @@ class ChiTietTourr extends Model
        return $list;
     }
 
+       // lấy tất cả danh sách các chi tiết tour và tên tour // trang chủ
+    public function getAllCTTbyLoaitour($id)
+    {
+       $list = DB::table($this->table)
+        ->select('chitiettour.*','tour.ten_tour as tour', 'tour.lich_trinh as lich_trinh', 'tour.gia_nguoi_lon as gia_nguoi_lon','tour.gia_tre_em as gia_tre_em')
+        ->join('tour', 'chitiettour.id_tour', '=', 'tour.id')
+        ->where('tour.id_loaitour', $id)
+        ->orderBy('tour.updated_at', 'DESC') -> paginate(5);
+
+        
+
+       return $list;
+    }
+
     // Lấy thông tin chi tiết tour theo id
      public function getXemChiTietTour($id)
     {
@@ -67,9 +81,35 @@ class ChiTietTourr extends Model
         ->where('chitiettour.id', '=', $id)
         ->get();
 
-      
+
        return $deltail;
     }
+
+    // tìm kiếm
+      public function getAllTimKiem($keyword)
+    {
+       $deltail = DB::table($this->table)
+        ->select('chitiettour.*','tour.ten_tour as tour', 'tour.lich_trinh as lich_trinh', 'tour.gia_nguoi_lon as gia_nguoi_lon','tour.gia_tre_em as gia_tre_em')
+        ->join('tour', 'chitiettour.id_tour', '=', 'tour.id')
+        ->join('tinh', 'tour.id_tinh', '=', 'tinh.id_tinh')
+        ->join('diadiem', 'tour.id_diadiem', '=', 'diadiem.id')
+        ->orderBy('chitiettour.updated_at', 'DESC');
+        
+        if (!empty($keyword)) {
+            $deltail = $deltail->where(function($query) use ($keyword) {
+                $query->orwhere('tour.ten_tour', 'like', '%'.$keyword.'%');
+                $query->orwhere('tour.phuong_tien', 'like', '%'.$keyword.'%');
+                $query->orwhere('tinh.tentinh', 'like', '%'.$keyword.'%');
+                $query->orwhere('diadiem.diem_den', 'like', '%'.$keyword.'%');
+
+            });
+        }
+
+        $deltail = $deltail->get();
+       return $deltail;
+    }
+
+    
 
 
 

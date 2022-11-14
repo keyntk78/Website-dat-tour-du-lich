@@ -34,7 +34,7 @@
                             </div>
                            
                             <button type="submit" class="btn btn-success">Thêm</button>
-                            <button type="reset" class="btn btn-primary">Làm mới</button>
+                            <a href="{{ route('tinh.index') }}" class="btn btn-primary">Quay lại</a>
                         </form>
             </div>
         </div>

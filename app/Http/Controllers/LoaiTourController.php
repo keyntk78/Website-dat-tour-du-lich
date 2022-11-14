@@ -44,6 +44,6 @@ class LoaiTourController extends Controller
 
         $this->loaiTour->addLoaiTour($dataInsert);
         
-        return redirect()->route('loaitour.index')->with('thongbao','Thêm loại tour thành công');
+        return back()->with('thongbao','Thêm loại tour thành công');
     }
 }

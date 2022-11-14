@@ -36,10 +36,13 @@ class DiaDiemController extends Controller
          $request->validate([
             'diem_den' => 'required',
             'mo_ta' => 'required',
+            'id_tinh' => 'required',
+
 
         ],[
             'diem_den.required' => 'Điểm đến bắt buộc phải nhập',
             'mo_ta.required' => 'Mô tả bắt buộc phải nhập',
+            'id_tinh.required' => 'Tỉnh phải bắt buộc phải chọn'
         ]);
 
 

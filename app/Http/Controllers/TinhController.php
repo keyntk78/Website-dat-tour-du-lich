@@ -41,7 +41,7 @@ class TinhController extends Controller
         ];
         $this->tinh->addTinh($dataInsert);
 
-        return redirect()->route('tinh.index')->with('thongbao', 'Thêm tỉnh thành công');
+        return back()->with('thongbao', 'Thêm tỉnh thành công');
     }
 
     // get sửa tỉnh

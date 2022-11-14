@@ -8,12 +8,12 @@
                     <div class="row h-100">
                         <div class="col-lg-12">
                             <div class="breadcrumb-item">
-                                <h2 class="breadcrumb-heading">Shop Layout</h2>
+                                <h2 class="breadcrumb-heading">Danh sách tour</h2>
                                 <ul>
                                     <li>
                                         <a href="index.html">Home <i class="pe-7s-angle-right"></i></a>
                                     </li>
-                                    <li>Shop List Fullwidth</li>
+                                    <li>kết quả tìm kiêm</li>
                                 </ul>
                             </div>
                         </div>
@@ -27,8 +27,8 @@
                             <div class="tab-content text-charcoal pt-8">
                                 <div class="tab-pane fade show active" id="list-view" role="tabpanel" aria-labelledby="list-view-tab">
                                     <div class="product-list-view row">
-                                        @if (!empty($chitiettour[0]))
-                                           @foreach ($chitiettour as $item)
+                                        @if (!empty($ketqua[0]))
+                                           @foreach ($ketqua as $item)
                                             <div class="col-12 pt-6">
                                                 <div class="product-item">
                                                     <div class="product-img img-zoom-effect">
@@ -53,17 +53,10 @@
                                             </div>
                                            @endforeach
                                         @else
-                                            <p class="not_found">Hiện tại chưa có tour nào</p>
+                                            <p class="not_found">Không tìm thấy tour bạn muốn tìm!</p>
                                         @endif 
                                     </div>
                                 </div>
-                            </div>
-                            <div class="pagination-area pt-10">
-                                <nav aria-label="Page navigation example">
-                                    <ul class="pagination justify-content-center">
-                                        {{ $chitiettour->links() }}
-                                    </ul>
-                                </nav>
                             </div>
                         </div>
                     </div>
