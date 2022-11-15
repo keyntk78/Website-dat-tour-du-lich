@@ -16,14 +16,16 @@ class TinhController extends Controller
     public function index(){
         
         $data = $this->tinh->getAllTinh();
-        return view('admin.tinh.index',['tinh'=> $data]);
+
+        $title = 'Danh sách tỉnh';
+        return view('admin.tinh.index',['tinh'=> $data], compact('title'));
     }
 
     // thêm 
     public function addTinh(){
             
-            
-        return view('admin.tinh.add');
+        $title = "Thêm tỉnh";
+        return view('admin.tinh.add', compact('title'));
     }
     // post thêm tỉnh
     public function postAddTinh(Request  $request){
@@ -59,7 +61,9 @@ class TinhController extends Controller
             return redirect()->route('tinh.index')->with('thongbao', 'Liên kết không tồn tại');
         }
 
-        return view('admin.tinh.edit', compact('tinhDetails'));
+        $title = $tinhDetails->tentinh;
+
+        return view('admin.tinh.edit', compact('tinhDetails', 'title'));    
     }
 
     //post sửa

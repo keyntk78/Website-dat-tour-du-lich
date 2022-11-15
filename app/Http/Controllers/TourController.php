@@ -45,13 +45,15 @@ class TourController extends Controller
         }
         $tours = $this->tour->getAllTour($filters, $keyword, self:: _PER_PAGE); 
 
-        return view('admin.tour.index', compact('tours'));
+        $title = 'Danh sách tour';
+        return view('admin.tour.index', compact('tours', 'title'));
     }
 
     // get
     public function addTour()
     {
-        return view('admin.tour.add');
+        $title = 'Thêm tour';
+        return view('admin.tour.add', compact('title'));
     }
 
     public function postaddTour(Request $request)
@@ -81,8 +83,6 @@ class TourController extends Controller
             'so_dem.numeric' => 'Giá người lớn phải là số',
             'lich_trinh.required' => 'Lịch trình bắt buộc phải nhập',
             'mo_ta_tour.required' => 'Mô tả bắt buộc phải nhập',
-
-
         ]);
 
          $dataInsert = [
@@ -122,7 +122,9 @@ class TourController extends Controller
             return redirect()->route('tour.index')->with('thongbao', 'Liên kết không tồn tại');
         }
 
-        return view('admin.tour.edit', compact('tourDetails'));
+        $title = $tourDetails->ten_tour;
+
+        return view('admin.tour.edit', compact('tourDetails', 'title'));
     }
 
     //post sửa

@@ -25,7 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin.layout.index');
+        $title = 'Trang quản trị';
+        
+        return view('admin.home', compact('title'));
     }
 
       public function getDangXuat() 

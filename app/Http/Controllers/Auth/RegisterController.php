@@ -93,7 +93,7 @@ class RegisterController extends Controller
             'diachi' => $data['diachi'],
             'cmnd' => $data['cmnd'],
             'gender' => $data['gender'],
-            'level' => 0,
+            'level' => 1,
             'password' => Hash::make($data['password']),
         ]);
     }

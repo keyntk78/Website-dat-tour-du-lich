@@ -1,4 +1,8 @@
 @extends('admin.layout.index')
+ @section('title')
+     {{ $title }}
+ @endsection
+
 @section('content')
 
 <!-- Page Content -->

@@ -21,14 +21,16 @@ class DiaDiemController extends Controller
     public function index(){
 
         $diadiem = $this->diaDiem->getAllDiaDiem();
+        $title = 'Danh sách địa điểm';
         
-        return view('admin.diadiem.index', compact('diadiem'));
+        return view('admin.diadiem.index', compact('diadiem', 'title'));
     }
 
     public function addDiaDiem(){
 
         $tinh = $this->tinh->getAllTinh();
-        return view('admin.diadiem.add', compact('tinh'));
+         $title = 'Thêm địa điểm';
+        return view('admin.diadiem.add', compact('tinh', 'title'));
     }
 
     public function postaddDiaDiem(Request $request){
@@ -73,7 +75,10 @@ class DiaDiemController extends Controller
         }else{
             return redirect()->route('diadiem.index')->with('thongbao', 'Liên kết không tồn tại');
         }
-       return view('admin.diadiem.edit', compact('diadiemDetails'));
+
+        $title = $diadiemDetails->diem_den;
+
+       return view('admin.diadiem.edit', compact('diadiemDetails', 'title'));
     }
 
     public function postEditDiaDiem(Request $request)

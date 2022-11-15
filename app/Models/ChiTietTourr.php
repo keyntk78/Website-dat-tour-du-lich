@@ -45,6 +45,13 @@ class ChiTietTourr extends Model
     }
 
 
+
+     public function updateChiTietTour($data, $id) {
+        return DB::table($this->table)->where('id', $id)->update($data);
+    }
+
+
+
     // lấy top 5 danh sách các chi tiết tour và tên tour mới nhất// trang chủ
     public function getCTTTrangChu()
     {
@@ -62,13 +69,12 @@ class ChiTietTourr extends Model
     public function getAllCTTbyLoaitour($id)
     {
        $list = DB::table($this->table)
-        ->select('chitiettour.*','tour.ten_tour as tour', 'tour.lich_trinh as lich_trinh', 'tour.gia_nguoi_lon as gia_nguoi_lon','tour.gia_tre_em as gia_tre_em')
+        ->select('chitiettour.*','tour.ten_tour as tour', 'tour.lich_trinh as lich_trinh', 'tour.gia_nguoi_lon as gia_nguoi_lon','tour.gia_tre_em as gia_tre_em', 'loaitour.ten_loai_tour as ten_loai_tour')
         ->join('tour', 'chitiettour.id_tour', '=', 'tour.id')
+        ->join('loaitour', 'tour.id_loaitour', '=', 'loaitour.id')
         ->where('tour.id_loaitour', $id)
         ->orderBy('tour.updated_at', 'DESC') -> paginate(5);
-
         
-
        return $list;
     }
 

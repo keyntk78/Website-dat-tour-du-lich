@@ -1,4 +1,7 @@
 @extends('layouts.index')
+ @section('title')
+     {{ $title }}
+ @endsection
 
 @section('content')
      <!-- Begin Main Content Area -->

@@ -28,14 +28,15 @@ class ChiTietTourController extends Controller
         if (!empty($request->keywords)) {
             $keyword = $request->keywords;
         }
-
+        $title = "Danh sách chi tiết tour";
         $chitiettours = $this->chitiettour->getAllChiTietTour($filters, $keyword, self:: _PER_PAGE); 
-        return view('admin.chitiettour.index', compact('chitiettours'));
+        return view('admin.chitiettour.index', compact('chitiettours', 'title'));
     }
 
      public function addChiTietTour()
     {
-        return view('admin.chitiettour.add');
+        $title = "Thêm chi tiết tour";
+        return view('admin.chitiettour.add', compact('title'));
     }
 
      public function postaddChiTietTour(Request $request)

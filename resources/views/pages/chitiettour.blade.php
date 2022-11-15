@@ -1,5 +1,9 @@
 @extends('layouts.index')
 
+ @section('title')
+     {{ $title }}
+ @endsection
+
 @section('content')
        <!-- Begin Main Content Area -->
         <main class="main-content">
@@ -39,8 +43,12 @@
                                                 <span>{{ $chitiettour->phuong_tien  }} </span>
                                             </li>
                                             <li>
+                                                 <span>Số lượng còn: <span>
+                                                <span>{{ $chitiettour->so_luong_con  }}</span>
+                                            </li>
+                                            <li>
                                                  <span>Số lượng đã đặt: <span>
-                                                <span>{{ $chitiettour->so_luong_con  }}/{{ $chitiettour->so_luong_toi_da  }}</span>
+                                                <span>{{ $chitiettour->so_luong_toi_da - $chitiettour->so_luong_con  }}/{{ $chitiettour->so_luong_toi_da  }}</span>
                                             </li>
                                             <li>
                                                 <span>Ngày khởi hành: <span>
@@ -51,7 +59,7 @@
                                 </div>
                                  <div class="widgets-area mb-9">
                                     <div class="widgets-item">
-                                       <a class="btn btn-custom-size lg-size btn-primary btn-secondary-hover rounded-0" href="#">Đặt tour</a>
+                                       <a class="btn btn-custom-size lg-size btn-primary btn-secondary-hover rounded-0" href="{{ route('dattour', ['id'=>$chitiettour->id]) }}">Đặt tour</a>
                                     </div>
                                 </div>
                                 <div class="widgets-area mb-9">

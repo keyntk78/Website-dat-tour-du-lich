@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\ChiTietTourr;
 use App\Models\ChuongTrinhTour;
 use App\Models\User;
+use App\Models\PhieuDat;
+
 use Illuminate\Support\Facades\Auth;
 
 
@@ -19,6 +21,7 @@ class PageController extends Controller
     private $chitiettours;
     private $chuongtrinhtour;
     private $users;
+    private $phieuDat;
 
 
     public function __construct()
@@ -26,12 +29,15 @@ class PageController extends Controller
         $this->chitiettours = new ChiTietTourr();
         $this->chuongtrinhtour = new ChuongTrinhTour();
         $this->users = new User();
+        $this->phieuDat = new PhieuDat();
+
     }
 
-      //lấy all
+    // Trang chủ 
     public function index(){
+        $title = 'Trang chủ';
         $chitiettour = $this->chitiettours->getCTTTrangChu();
-        return view('pages.trangchu', compact('chitiettour'));
+        return view('pages.trangchu', compact('chitiettour', 'title'));
     }
 
     public function chitiettour(Request $request){
@@ -41,19 +47,20 @@ class PageController extends Controller
         $chitiettour =   $this->chitiettours->getXemChiTietTour($id);
         $chitiettour = $chitiettour[0];
         $id_tour = $chitiettour->id_tour;
-        // dd($id_tour);
         $listChuongtrinhtour = $this->chuongtrinhtour->getAllChuongTrinhTourIDTour($id_tour);
-        // if (!empty($listChuongtrinhtour[0])) {
-        //     dd("rỗng");
-        // }
-        return view('pages.chitiettour', compact('chitiettour', 'toptourlienquan', 'listChuongtrinhtour'));
+        $title = $chitiettour->tour;
+
+
+        return view('pages.chitiettour', compact('chitiettour', 'toptourlienquan', 'listChuongtrinhtour', 'title'));
     }
 
+    // trang loại tour
     public function loaitour(Request $request){
         $id = $request->route('id');
         
         $chitiettour = $this->chitiettours->getAllCTTbyLoaitour($id);
-        return view('pages.loaitour', compact('chitiettour'));
+        $title = $chitiettour[0]->ten_loai_tour;
+        return view('pages.loaitour', compact('chitiettour', 'title'));
     }
 
    
@@ -67,12 +74,15 @@ class PageController extends Controller
             return redirect('/');
         }
 
-        return view('pages.timkiem', compact('ketqua'));
+        $title = $keyword;
+
+        return view('pages.timkiem', compact('ketqua', 'title'));
     }
 
     public function getDangky(){
         
-        return view('pages.dangky');
+        $title = "Đăng ký";
+        return view('pages.dangky', compact('title'));
     }
 
      public function postDangky(Request  $request){
@@ -120,7 +130,8 @@ class PageController extends Controller
 
     public function getDangnhap(){
         
-        return view('pages.dangnhap');
+        $title = "Đăng nhập";
+        return view('pages.dangnhap', compact('title'));
     }
 
     public function postDangnhap(Request $request){
@@ -154,7 +165,11 @@ class PageController extends Controller
     public function getNguoidung()
     {
         $user = Auth::user();
-        return view('pages.nguoidung', compact('user'));
+        
+        $phieudat = $this->phieuDat->chitietPheudat(Auth::user()->id);
+        
+        $title = Auth::user()->hoten;
+        return view('pages.nguoidung', compact('user', 'phieudat', 'title'));
     }
 
     public function postNguoidung(Request $request)
@@ -193,6 +208,53 @@ class PageController extends Controller
 
         $user->save();
         
+        
         return back()->with('thongbao','Chỉnh sửa người dùng thành công');
+    }
+
+
+    public function getDoiMatKhau()
+    {
+       $title = "Đổi mật khẩu";
+        return view('pages.doimatkhau', compact('title'));
+    }
+
+    public function postDoiMatKhau(Request $request)
+    {
+        $user = auth()->user();
+        
+        $validated = $request->validate([
+            'mk_cu' => [
+                'required',
+                function ($attribute, $value, $fail) use ($user) {
+                    if (!Hash::check($value, $user->password)) {
+                        $fail('Nhập sai mật khẩu hiện tại');
+                    }
+                }
+            ],
+            'mk_moi' => [
+                'required', 'min:6', 'different:mk_cu'
+            ], 
+            'mk_nhaplai' => [
+                'required', 'min:6', 'same:mk_moi',
+            ]
+        ], [
+            'mk_cu.required' => 'Mật khẩu hiện tại bắt buộc phải nhập',
+            'mk_moi.required' => 'Mật khẩu hiện tại bắt buộc phải nhập',
+            'mk_moi.different' => 'Mật khẩu mới phải khác mật khẩu hiện tại',
+            'mk_nhaplai.same' => 'Nhập lại mật khẩu không chính xác',
+            'mk_nhaplai.required' => 'Mật khẩu hiện tại bắt buộc phải nhập',
+            'mk_moi.min' => 'Trên 6 ký tự',
+            'mk_nhaplai.min' => 'Trên 6 ký tự',
+        ]);
+        
+        $id = Auth::user()->id;
+        $user = User::find($id);
+        $mk_moi = Hash::make($request->mk_moi);
+        
+        $user->password = $mk_moi;
+
+        $user->save();
+        return back()->with('thongbao','Đổi mật khẩu thành công');
     }
 }

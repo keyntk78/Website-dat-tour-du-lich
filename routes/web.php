@@ -12,6 +12,7 @@ use App\Http\Controllers\TourController;
 use App\Http\Controllers\ChiTietTourController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ChuongTrinhTouControllerr;
+use App\Http\Controllers\PhieuDatController;
 
 
 
@@ -21,26 +22,37 @@ Route::get('/', [PageController::class, 'index'])->name('trangchu');
 Route::get('/trangchu', [PageController::class, 'index'])->name('trangchu');
 
 
-// trang chi tiet
+// trang chi tiet tour
 Route::get('/chitiettour/{id}', [PageController::class, 'chitiettour'])->name('chitiettour');
+
+// trang loại tour
 Route::get('/loaitour/{id}', [PageController::class, 'loaitour'])->name('loaitour');
 
-
+// đăng nhập
 Route::get('/dangnhap', [PageController::class, 'getDangnhap'])->name('dangnhap');
 Route::post('/dangnhap', [PageController::class, 'postDangnhap'])->name('post-dangnhap');
 
+// đăng xuất
 Route::get('/dangxuat', [PageController::class, 'getDangxuat'])->name('dangxuat');
 
-
-
+// đăng ký
 Route::get('/dangky', [PageController::class, 'getDangky'])->name('dangky');
 Route::post('/dangky', [PageController::class, 'postDangky'])->name('post-dangky');
+
+// người dùng
 Route::get('/nguoidung', [PageController::class, 'getNguoidung'])->name('nguoidung');
 Route::post('/nguoidung', [PageController::class, 'postNguoidung'])->name('postNguoidung');
 
+// đổi mật khẩu
+Route::get('/doimatkhau', [PageController::class, 'getDoiMatKhau'])->name('doimatkhau');
+Route::post('/doimatkhau', [PageController::class, 'postDoiMatKhau'])->name('post-doimatkhau');
 
-
+// tìm kiếm
 Route::get('/tim-kiem', [PageController::class, 'TimKiem'])->name('timkiem');
+
+//đặt tour
+Route::get('/dat-tour/{id}', [PhieuDatController::class, 'getPhieuDat'])->name('dattour');
+Route::post('/dat-tour/{id}', [PhieuDatController::class, 'postPhieuDat'])->name('dattour');
 
 
 
@@ -112,9 +124,9 @@ Route::prefix('admin')->middleware('adminLogin')->group(function(){
        Route::get('/', [ChuongTrinhTouControllerr::class, 'index'])->name('index');
        Route::get('/add', [ChuongTrinhTouControllerr::class, 'addChuongTrinhTour'])->name('add');
        Route::post('/add', [ChuongTrinhTouControllerr::class, 'postaddChuongTrinhTour'])->name('post-add');
-      //  Route::get('/edit/{id}', [TourController::class, 'getEditTour'])->name('edit');
-      //  Route::post('/update', [TourController::class, 'postEditTour'])->name('post-edit');
-      //  Route::get('/delete/{id}', [TourController::class, 'deleteTour'])->name('delete');
+       Route::get('/edit/{id}', [ChuongTrinhTouControllerr::class, 'getEditChuongTrinhTour'])->name('edit');
+       Route::post('/update', [ChuongTrinhTouControllerr::class, 'postEditChuongTrinhTour'])->name('post-edit');
+       Route::get('/delete/{id}', [ChuongTrinhTouControllerr::class, 'deleteChuongTrinhTour'])->name('delete');
     });
 
      // chi tiết tour

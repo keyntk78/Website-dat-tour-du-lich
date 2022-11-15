@@ -9,13 +9,15 @@ class UserController extends Controller
 {
     public function index(){
         $user = User::all();
-        return view('admin.user.index', ['user' => $user]);
+        $title = "Danh sách người dùng";
+        return view('admin.user.index', ['user' => $user], compact('title'));
     }
 
     public function edit($id)
-    {
+    {   
         $user = User::find($id);
-        return view('admin.user.edit',['user'=>$user]);
+        $title = 'Chỉnh sửa người dùng';
+        return view('admin.user.edit',['user'=>$user], compact('title'));
 
     }
     public function postEdit(Request $request, $id)

@@ -1,6 +1,15 @@
  @extends('layouts.index')
 
+ @section('title')
+     {{ $title }}
+ @endsection
+
 @section('content')
+        @if(session('thongbao'))
+                    <div class="alert alert-success" style="text-align: center;">
+                        {{session('thongbao')}}
+                    </div>
+        @endif
          <!-- Begin Slider Area -->
         <div class="slider-area">
             <!-- Main Slider -->
@@ -130,7 +139,7 @@
                                             </h5>
                                             <p class="short-desc mb-5">{{ $item->lich_trinh }}</p>
                                             <div class="button-wrap">
-                                                <a class="btn btn-custom-size btn-dark btn-lg rounded-0" href="">Đặt tour</a>
+                                                <a class="btn btn-custom-size btn-dark btn-lg rounded-0" href="{{ route('dattour', ['id'=>$item->id]) }}">Đặt tour</a>
                                             </div>
                                         </div>
                                     </div>

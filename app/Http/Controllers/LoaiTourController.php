@@ -17,14 +17,15 @@ class LoaiTourController extends Controller
     public function index(){
 
         $loaitour = $this->loaiTour->getAllLoaiTour();
+        $title = 'Danh sách loại tour';
         
-        return view('admin.loaitour.index', compact('loaitour'));
+        return view('admin.loaitour.index', compact('loaitour', 'title'));
     }
 
     public function addLoaiTour(){
 
-        
-        return view('admin.loaitour.add');
+        $title = 'Thêm loại tour';
+        return view('admin.loaitour.add', compact( 'title'));
     }
 
     public function postaddLoaiTour(Request $request){
@@ -61,7 +62,9 @@ class LoaiTourController extends Controller
             return redirect()->route('loaitour.index')->with('thongbao', 'Liên kết không tồn tại');
         }
 
-        return view('admin.loaitour.edit', compact('loaitourDetails'));
+        $title = $loaitourDetails->ten_loai_tour;
+
+        return view('admin.loaitour.edit', compact('loaitourDetails', 'title'));
     }
 
     public function postEditLoaiTour(Request $request)

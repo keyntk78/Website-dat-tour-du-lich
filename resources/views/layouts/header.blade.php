@@ -5,6 +5,7 @@
                         <div class="col-lg-12">
                             <div class="header-middle-wrap">
                                 <a href="/" class="header-logo name_logo">
+                                    <img src="{{ asset('assets/images/favicon.ico') }}" class="img-logo-qtk" alt="">
                                     QTK
                                     {{-- <img src="assets/images/logo/dark.png" alt="Header Logo"> --}}
                                 </a>
@@ -56,7 +57,7 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="about.html">Giới thiệu</a>
+                                                <a href="#">Giới thiệu</a>
                                             </li>
                                             <li class="drop-holder">
                                                 <a href="javascript:void(0)">Loại tour
@@ -72,11 +73,11 @@
                                                 </ul>
                                             </li>
                                             <li class="drop-holder">
-                                                <a href="javascript:void(0)">Địa điểm
+                                                <a href="#">Địa điểm
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="contact.html">Liên hệ</a>
+                                                <a href="#">Liên hệ</a>
                                             </li>
                                         </ul>
                                     </nav>

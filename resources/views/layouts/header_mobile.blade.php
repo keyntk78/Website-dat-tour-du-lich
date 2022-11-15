@@ -39,7 +39,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="about.html">
+                                        <a href="#">
                                             <span class="mm-text">Giới thiệu</span>
                                         </a>
                                     </li>
@@ -56,27 +56,17 @@
                                                             href="{{ route('loaitour', ['id'=>$item->id]) }}">{{ $item->ten_loai_tour }}</a>
                                                         </li>
                                                     @endforeach
-                                            {{-- <li>
-                                                <a href="faq.html">
-                                                    <span class="mm-text">Hàng đầu</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="404.html">
-                                                    <span class="mm-text">Nổi bật</span>
-                                                </a>
-                                            </li> --}}
                                         </ul>
                                     </li>
                                    
                                     <li>
-                                        <a href="contact.html">
+                                        <a href="#">
                                             <span class="mm-text">Địa điểm</span>
                                         </a>
                                     </li>
 
                                     <li>
-                                        <a href="contact.html">
+                                        <a href="#">
                                             <span class="mm-text">Liên hệ</span>
                                         </a>
                                     </li>

@@ -8,7 +8,7 @@
                                     <a href="index.html" class="name_logo" style="color: #bac34e;
                                         font-size: 200%;
                                         font-weight: 600;">
-                                        QTK
+                                        <img src="{{ asset('assets/images/favicon.ico') }}" class="img-logo-qtk" alt="">QTK
                                     </a>
                                 </div>
                                 <p class="short-desc mb-2">Công ty NTK</p>
